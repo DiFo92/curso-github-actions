@@ -1,0 +1,33 @@
+name: Tres Tristes Triggers
+run-name: Ejecucion de los triggers
+on:
+    push:
+        branches: []
+        paths: ['**.yml']
+    workflow_dispatch:
+        inputs:
+            edad:
+                description: 'Edad'
+                required: true
+                default: menor_edad
+                type: choice
+                options:
+                    - menor_edad
+                    - mayor_edad
+                    - adulto_mayor
+            nombre:
+                description: 'Nombre'
+                required: true
+                type: string
+    schedule:
+        - cron: '15 12 * * *'
+jobs:
+    mensaje-en-terminal:
+        runs-on: ubuntu:lastest
+        steps:
+            - name: Clonar Repositorio
+              uses: actions/checkout@v3
+            - name: Definir variable username
+              run: echo "USERNAME=${{ github.actor }}" >> $GITHUB_ENV
+            - name: Correr script que muestra mensaje
+              run: python un_archivo.py
