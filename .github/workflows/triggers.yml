@@ -23,7 +23,7 @@ on:
         - cron: '15 12 * * *'
 jobs:
     mensaje-en-terminal:
-        runs-on: ubuntu:lastest
+        runs-on: ubuntu-latest
         steps:
             - name: Clonar Repositorio
               uses: actions/checkout@v3
