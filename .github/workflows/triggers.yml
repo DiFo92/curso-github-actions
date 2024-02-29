@@ -7,7 +7,7 @@ on:
     workflow_dispatch:
         inputs:
             edad:
-                description: 'Edad'
+                description: Edad
                 required: true
                 default: menor_edad
                 type: choice
@@ -16,7 +16,8 @@ on:
                     - mayor_edad
                     - adulto_mayor
             nombre:
-                description: 'Nombre'
+                description: Nombre
+                default: Alejandro
                 required: true
                 type: string
     schedule:
