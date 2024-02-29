@@ -1,0 +1,46 @@
+name: Aprendiendo expresiones
+run-name: Expresiones altura, peso y toJson
+on:
+  workflow_dispatch:
+    inputs:
+      nombre:
+        description: nombre de la persona
+        default: Alejandro
+        type: string
+        required: true
+      peso:
+        description: peso de la persona
+        required: true
+        type: number
+      altura:
+        description: altura de la persona
+        required: true
+        type: number
+      imprimir_json:
+        description: deseas imprimir a json
+        type: boolean
+        default: true
+jobs:
+  job-saber-si-es-alto:
+    runs-on: ubuntu-latest
+    name: Job para saber si es alto
+    if: ${{ inputs.altura >= 1.80 }}
+    steps:
+      - name: imprimir si es alto
+        run: echo "Eres alto ${{inputs.nombre}} mides ${{ inputs.altura }} metros"
+
+  job-saber-si-pesa-mas-de-60-kilos:
+    runs-on: ubuntu-latest
+    name: Job para saber si pesa mas de 60 kilos
+    if: ${{ inputs.peso > 60 }}
+    steps:
+      - name: imprimir peso
+        run: echo "Pesas mas de 60 kilos"
+
+  job-imprimir-json:
+    runs-on: ubuntu-latest
+    name: Job para imprimir a JSON
+    if: ${{ inputs.imprimir_json }}
+    steps:
+      - name: Imprimir JSON
+        run: echo "${{toJSON(inputs)}}"
