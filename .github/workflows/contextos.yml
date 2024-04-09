@@ -11,4 +11,4 @@ jobs:
       - name: Echo variables ENV
         run: echo "Hola persona llamada ${{env.nombre}} - ${{env.apellido}}"
       - name: Echo variables GITHUB
-        run: echo "NombreUsuario = ${{ github.actor }} en el base_ref = ${{github.base_ref}}"
+        run: echo "NombreUsuario = ${{ github.actor }} en el base_ref = ${{github.ref}}"
