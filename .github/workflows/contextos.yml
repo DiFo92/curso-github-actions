@@ -11,4 +11,6 @@ jobs:
       - name: Echo variables ENV
         run: echo "Hola persona llamada ${{env.nombre}} - ${{env.apellido}}"
       - name: Echo variables GITHUB
-        run: echo "NombreUsuario = ${{ github.actor }} en el base_ref = ${{github.ref}}"
+        run: echo "NombreUsuario = ${{ github.actor }} en el la rama = ${{github.ref}} del repositorio ${{github.repository}}"
+      - name: Echo <context> completo
+        run: echo ${{ github }}
