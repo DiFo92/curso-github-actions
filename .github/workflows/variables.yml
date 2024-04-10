@@ -1,0 +1,13 @@
+name: Aprendiendo Variables
+run-name: Ejecucion de un job leyendo las variables
+on: [workflow_dispatch]
+env:
+  apellido: Forero
+jobs:
+  imprimir-variables:
+    runs-on: ubuntu-latest
+    env:
+      edad: 31
+    steps:
+      - name: Echo variables ENV
+        run: echo "Hola persona llamada ${{vars.NOMBRE}} - ${{env.apellido}} con edad ${{env.edad}}"

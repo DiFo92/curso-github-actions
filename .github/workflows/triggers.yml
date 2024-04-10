@@ -1,48 +1,48 @@
-name: Tres Tristes Triggers
+name: Aprendiendo Triggers
 run-name: Ejecucion de los triggers
 on:
-    push:
-        branches: []
-        paths: ['**.yml']
-    workflow_dispatch:
-        inputs:
-            edad:
-                description: Edad
-                required: true
-                default: menor_edad
-                type: choice
-                options:
-                    - menor_edad
-                    - mayor_edad
-                    - adulto_mayor
-            nombre:
-                description: Nombre
-                default: Alejandro
-                required: true
-                type: string
-    schedule:
-        - cron: '15 12 * * *'
+  push:
+    branches: []
+    paths: ["**.yml"]
+  workflow_dispatch:
+    inputs:
+      edad:
+        description: Edad
+        required: true
+        default: menor_edad
+        type: choice
+        options:
+          - menor_edad
+          - mayor_edad
+          - adulto_mayor
+      nombre:
+        description: Nombre
+        default: Alejandro
+        required: true
+        type: string
+  schedule:
+    - cron: "15 12 * * *"
 jobs:
-    mensaje-manual:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Clonar Repositorio
-              uses: actions/checkout@v3
-            - name: Definir variables entrada manual EDAD
-              run: echo "EDAD=${{inputs.edad}}" >> $GITHUB_ENV
-            - name: Definir variables entrada manual NOMBRE
-              run: echo "NOMBRE=${{inputs.nombre}}" >> $GITHUB_ENV
-            - name: Definir variable nombre_usuario
-              run: echo "USERNAME=${{ github.actor }}" >> $GITHUB_ENV
-            - name: Correr script que muestra mensaje
-              run: python archivo_desde_dispatch.py
-    mensaje-en-terminal:
-        if: ${{ github.event_name != 'workflow_dispatch'}}
-        runs-on: ubuntu-latest
-        steps:
-            - name: Clonar Repositorio
-              uses: actions/checkout@v3
-            - name: Definir variable username
-              run: echo "USERNAME=${{ github.actor }}" >> $GITHUB_ENV
-            - name: Correr script que muestra mensaje
-              run: python un_archivo.py
+  mensaje-manual:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar Repositorio
+        uses: actions/checkout@v3
+      - name: Definir variables entrada manual EDAD
+        run: echo "EDAD=${{inputs.edad}}" >> $GITHUB_ENV
+      - name: Definir variables entrada manual NOMBRE
+        run: echo "NOMBRE=${{inputs.nombre}}" >> $GITHUB_ENV
+      - name: Definir variable nombre_usuario
+        run: echo "USERNAME=${{ github.actor }}" >> $GITHUB_ENV
+      - name: Correr script que muestra mensaje
+        run: python archivo_desde_dispatch.py
+  mensaje-en-terminal:
+    if: ${{ github.event_name != 'workflow_dispatch'}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar Repositorio
+        uses: actions/checkout@v3
+      - name: Definir variable username
+        run: echo "USERNAME=${{ github.actor }}" >> $GITHUB_ENV
+      - name: Correr script que muestra mensaje
+        run: python un_archivo.py
