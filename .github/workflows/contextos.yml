@@ -1,6 +1,9 @@
 name: Aprendiendo Contextos
 run-name: Ejecucion de algunos jobs según contexto
-on: [push, pull_request]
+on:
+  push:
+    branches: [master]
+  # pull_request: []
 env:
   nombre: Diego
   apellido: Forero
